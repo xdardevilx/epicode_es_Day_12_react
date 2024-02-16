@@ -3,7 +3,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import musicFetch from "./data/get-fetch.API";
 import Sidebar from "./components/side-bar";
 import NavBarMain from "./components/nav-bar-main";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import PlayerComponent from "./components/player-component";
 import MusicComponent from "./components/music-component";
 

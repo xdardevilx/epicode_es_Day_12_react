@@ -2,8 +2,15 @@
 import { useEffect, useState } from "react";
 import musicFetch from "../data/get-fetch.API";
 import { Button, Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 const MusicComponent = (query) => {
   const [musics, setMusics] = useState([]);
+  const dispatch = useDispatch();
+  
+  const addOn = () => {
+    console.log("addOn");
+    dispatch({ type: "ADD_SONG", payload: musics });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +36,9 @@ const MusicComponent = (query) => {
           key={index}
           className="d-flex flex-column justify-content-center align-items-center ">
           <img src={music.artist.picture_medium} />
-          <Button className="bi bi-heart"> Add playlist</Button>
+          <Button onClick={addOn} className="bi bi-heart">
+            Add playlist
+          </Button>
         </Col>
       ))}
     </>
