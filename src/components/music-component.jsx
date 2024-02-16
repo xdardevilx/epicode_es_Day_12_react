@@ -1,12 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import musicFetch from "../data/get-fetch.API";
-const MusicComponent = (props) => {
+import { Button, Col } from "react-bootstrap";
+const MusicComponent = (query) => {
   const [musics, setMusics] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await musicFetch(props.query);
+        const data = await musicFetch(query.query);
         console.log("data", data);
         setMusics(data);
       } catch (error) {
@@ -16,16 +18,21 @@ const MusicComponent = (props) => {
 
     fetchData();
   }, []);
-  
+
   useEffect(() => {
     console.log("music", musics);
   }, [musics]);
   return (
-    <div className="text-center">
+    <>
       {musics.slice(0, 4).map((music, index) => (
-        <img key={index} src={music.artist.picture_medium} />
+        <Col
+          key={index}
+          className="d-flex flex-column justify-content-center align-items-center ">
+          <img src={music.artist.picture_medium} />
+          <Button className="bi bi-heart"> Add playlist</Button>
+        </Col>
       ))}
-    </div>
+    </>
   );
 };
 
